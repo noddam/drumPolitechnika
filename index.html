@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 </head>
 <body>
 
@@ -45,16 +48,20 @@
       <kbd>N</kbd>
       <span class="sound">tink</span>
     </div>
+<div data-key="73" class="key">
+      <kbd>I</kbd>
+      <span class="sound">openhat</span>
+    </div>
     <div data-key="75" class="key">
-        <kbd>K</kbd>
-        <span class="sound">tink</span>
-      </div>
-      <div data-key="65" class="key">
-        <kbd>A</kbd>
-        <span class="sound">tink</span>
-      </div>
-  </div>
-
+      <kbd>K</kbd>
+      <span class="sound">tink</span>
+    </div>
+       <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+ 
+</div>
   <audio data-key="80" src="sounds/clap.wav"></audio>
   <audio data-key="79" src="sounds/hihat.wav"></audio>
   <audio data-key="76" src="sounds/kick.wav"></audio>
@@ -65,8 +72,9 @@
   <audio data-key="72" src="sounds/tom.wav"></audio>
   <audio data-key="78" src="sounds/tink.wav"></audio>
   <audio data-key="75" src="sounds/tink.wav"></audio>
-  <audio data-key="65" src="sounds/tink.wav"></audio>
+  <audio data-key="65" src="sounds/clap.wav"></audio>
 
+    
 <style>
     html {
   font-size: 10px;
@@ -94,7 +102,7 @@ body,html {
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
-  transition: all .07s;
+  transition: all 1s;
   width: 10rem;
   text-align: center;
   color: white;
@@ -103,7 +111,7 @@ body,html {
 }
 
 .playing {
-  transform: scale(1.1);
+  transform: scale(2);
   border-color: #ffc600;
   box-shadow: 0 0 1rem #ffc600;
 }
@@ -128,12 +136,12 @@ kbd {
       if(!audio) return;
       audio.currentTime=0;
       audio.play();
-      key.classList.add(`playing`);
+      key.classList.remove(`playing`);
       
     }
     function removeTransition(e){
       if(e.propertyName !==`transform`) return;
-      this.classList.remove(`playing`);
+      e.target.classList.remove(`playing`);
 
     }
     const keys=document.querySelectorAll(`.key`);
